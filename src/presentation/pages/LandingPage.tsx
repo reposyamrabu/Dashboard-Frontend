@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Logo from '../../assets/logosynergy.png';
-import KominfoDashboard from '../components/KominfoDashboard';
+import { KominfoDashboard } from '../components/dashboard';
 
 const LandingPage = () => {
   const [showDashboard, setShowDashboard] = useState(false);
