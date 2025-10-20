@@ -1,0 +1,1 @@
+export { KominfoDashboard } from './KominfoDashboard';
