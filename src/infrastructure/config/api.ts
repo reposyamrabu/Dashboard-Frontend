@@ -1,5 +1,5 @@
 export const API_CONFIG = {
-  BASE_URL: 'https://my.syamrabu.com',
+  BASE_URL: 'https://9vwmj9qw-1234.asse.devtunnels.ms',
   TIMEOUT: 30000,
   RETRY_ATTEMPTS: 3,
 } as const;
