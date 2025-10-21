@@ -12,7 +12,7 @@ export function useBedFilter(bedAvailable?: BedAvailableItem[]) {
   const kelasOptions = useMemo(() => {
     if (!bedAvailable) return [];
 
-    const regex = /KELAS\s*\d+|VIP|HCU|ICU|NICU/i;
+    const regex = /KELAS\s*\d+|VIP|HCU|ICU|ISOLASI|ICCU|NICU/i;
     const unique = new Set<string>();
 
     bedAvailable.forEach(item => {
@@ -33,8 +33,15 @@ export function useBedFilter(bedAvailable?: BedAvailableItem[]) {
     if (!bedAvailable || selectedKelas.length === 0) return bedAvailable;
 
     return bedAvailable.filter(item => {
-      const regex = new RegExp(selectedKelas.join('|'), 'i');
-      return regex.test(item.nama_ruangperawatan);
+      return selectedKelas.some(kelas => {
+        if (kelas === 'LAINNYA') {
+          const regex = /KELAS\s*\d+|VIP|HCU|ICU|ISOLASI|ICCU|NICU/i;
+          return !regex.test(item.nama_ruangperawatan);
+        } else {
+          const regex = new RegExp(kelas, 'i');
+          return regex.test(item.nama_ruangperawatan);
+        }
+      });
     });
   }, [selectedKelas, bedAvailable]);
 
